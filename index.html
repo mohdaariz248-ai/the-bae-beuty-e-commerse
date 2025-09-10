@@ -1,149 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KAIJU NO.8 ANIMEAARIZWORLD DOWNLOAD</title>
-  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+<!-- Website Logo / Favicon -->
+  <link rel="icon" type="image/jpeg" href="https://media.fastdl.app/get?__sig=612i10d4h5d8XEO476v50g&__expires=1757512498&uri=https%3A%2F%2Finstagram.fpll4-1.fna.fbcdn.net%2Fv%2Ft51.2885-19%2F483596539_1694382911457322_2108413034767413608_n.jpg%3Fefg%3DeyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0%26_nc_ht%3Dinstagram.fpll4-1.fna.fbcdn.net%26_nc_cat%3D110%26_nc_oc%3DQ6cZ2QE9NImJsuZi4kz__mPTbndLGlVH45I9ey0JShH8xnPPryhnVn9Skl5KaY1Kqhu6QU0%26_nc_ohc%3DZ5iy_CpNs7oQ7kNvwEBINZM%26_nc_gid%3DUycKJq8zBbXEq3ycj8ZuEA%26edm%3DAEF8tYYBAAAA%26ccb%3D7-5%26oh%3D00_AfYnknm_LbNKqPJFPZfAh6yjXFpmB1UcjRy285stsDN2IA%26oe%3D68C7363D%26_nc_sid%3D1e20d2&filename=483596539_1694382911457322_2108413034767413608_n.jpg">
+  <meta charset="UTF-8" />
+  <title>THE BAE BEAUTY SHOP!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #0f2027, #2c5364);
-      color: white;
-      font-family: 'Amatic SC', cursive;
-      text-align: center;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background-color: #111; color: #fff; }
 
-    h1 {
-      font-size: 80px;
-      margin-top: 60px;
-      letter-spacing: 5px;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-    }
+    .header { display: flex; align-items: center; background-color: #000; padding: 15px 20px; color: #FFD700; position: relative; }
+    .left-image img { height: 40px; margin-right: 15px; border-radius: 5px; object-fit: contain; display: block; }
+    .logo { font-size: 24px; font-weight: bold; color: #FFD700; }
 
-    .dropdown {
-      margin: 20px;
-      display: inline-block;
-      position: relative;
-    }
+    .search-box { flex: 1; display: flex; margin: 0 20px; }
+    .search-box input { width: 100%; padding: 8px; border: 1px solid #FFD700; background: #222; color: #fff; border-radius: 4px 0 0 4px; }
+    .search-box button { padding: 8px 12px; border: none; background-color: #FFD700; color: #000; font-weight: bold; border-radius: 0 4px 4px 0; cursor: pointer; }
 
-    .main-btn {
-      background-color: #1e88e5;
-      color: white;
-      padding: 15px 25px;
-      font-size: 26px;
-      border: none;
-      border-radius: 12px 0 0 12px;
-      cursor: default;
-      font-weight: bold;
-    }
+    .nav-links a { margin-left: 15px; color: #FFD700; text-decoration: none; cursor: pointer; }
 
-    .arrow-btn {
-      background-color: #1565c0;
-      color: white;
-      padding: 15px;
-      font-size: 22px;
-      border: none;
-      border-radius: 0 12px 12px 0;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+    .banner { background-color: #000; color: #FFD700; text-align: center; padding: 30px 0; }
 
-    .arrow-btn:hover {
-      background-color: #0d47a1;
-    }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 40px; }
+    .product-card { background-color: #1a1a1a; padding: 15px; border-radius: 6px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5); color: #fff; }
+    .product-card img { max-width: 100%; height: auto; margin-bottom: 10px; border: 2px solid #FFD700; }
+    .product-card button { margin-top: 10px; background-color: #FFD700; border: none; padding: 8px 12px; color: #000; font-weight: bold; cursor: pointer; border-radius: 5px; }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #2c5364;
-      min-width: 250px;
-      border-radius: 10px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-      z-index: 1;
-      margin-top: 5px;
-      text-align: left;
-    }
+    .footer { background-color: #000; color: #FFD700; text-align: center; padding: 15px 0; margin-top: 40px; }
 
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      font-size: 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
+    .cart-panel { position: fixed; top: 0; right: -320px; width: 320px; height: 100%; background-color: #1a1a1a; color: #fff; box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); padding: 20px; transition: right 0.3s ease-in-out; z-index: 1000; overflow-y: auto; }
+    .cart-panel.open { right: 0; }
+    .close-cart { background-color: #FFD700; color: #000; border: none; padding: 5px 10px; float: right; cursor: pointer; font-weight: bold; }
+    .cart-items img { width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border: 2px solid #FFD700; }
+    .cart-item { display: flex; align-items: center; margin-bottom: 10px; }
+    .cart-item-name { flex: 1; }
 
-    .dropdown-content a:hover {
-      background-color: #1e3c50;
-    }
+    .buy-now-btn { margin-top: 20px; width: 100%; background-color: #FFD700; color: #000; padding: 10px; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
 
-    /* ???-??? ??? ?? quality ?? ??? */
-    .q1080 .main-btn { background-color: #1e88e5; }
-    .q720 .main-btn { background-color: #43a047; }
-    .q480 .main-btn { background-color: #f4511e; }
+    .checkout-form { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; color: #fff; padding: 25px; box-shadow: 0 0 10px rgba(255,215,0,0.5); z-index: 2000; width: 300px; border: 2px solid #FFD700; border-radius: 8px; }
+    .checkout-form input, .checkout-form textarea, .checkout-form select { width: 100%; padding: 8px; margin-top: 10px; background: #222; border: 1px solid #FFD700; color: #fff; border-radius: 4px; }
+    .checkout-form label { margin-top: 10px; display: block; }
+    .checkout-form button { margin-top: 15px; padding: 10px; background-color: #FFD700; color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
 
-    .q1080 .arrow-btn { background-color: #1565c0; }
-    .q720 .arrow-btn { background-color: #2e7d32; }
-    .q480 .arrow-btn { background-color: #d84315; }
-
-    .q1080 .arrow-btn:hover { background-color: #0d47a1; }
-    .q720 .arrow-btn:hover { background-color: #1b5e20; }
-    .q480 .arrow-btn:hover { background-color: #bf360c; }
+    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; }
   </style>
 </head>
 <body>
-
-  <h1>KAIJJU NO.8 SEASON 1 COMPLETE</h1>
-
-  <!-- 1080p Dropdown -->
-  <div class="dropdown q1080">
-    <button class="main-btn">1080p</button>
-    <button class="arrow-btn" onclick="toggleDropdown(this)">&#9660;</button>
-    <div class="dropdown-content">
-      <a href="https://cuty.io/VsqYl3">Episode 1</a>
-      <a href="https://cuty.io/HYsKlp">Episode 2</a>
-      <a href="https://cuty.io/Jdststvz8">Episode 3</a>
-      <a href="https://cuty.io/zUNfoMyly">Episode 4</a>
-      <a href="https://cuty.io/UxLNCOZ">Episode 5</a>
-      <a href="https://cuty.io/LsldIesm">Episode 6</a>
-      <a href="https://cuty.io/HMZgH">Episode 7</a>
-      <a href="https://cuty.io/qkjTRE0q9hGK">Episode 8</a>
-      <a href="https://cuty.io/GUnKoU">Episode 9</a>
-      <a href="https://cuty.io/c6l5TUuUfUp">Episode 10</a>
-      <a href="https://cuty.io/nI8JC">Episode 11</a>
-      <a href="https://cuty.io/YmbV9">Episode 12</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="left-image"><img src="https://media.fastdl.app/get?__sig=612i10d4h5d8XEO476v50g&__expires=1757512498&uri=https%3A%2F%2Finstagram.fpll4-1.fna.fbcdn.net%2Fv%2Ft51.2885-19%2F483596539_1694382911457322_2108413034767413608_n.jpg%3Fefg%3DeyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0%26_nc_ht%3Dinstagram.fpll4-1.fna.fbcdn.net%26_nc_cat%3D110%26_nc_oc%3DQ6cZ2QE9NImJsuZi4kz__mPTbndLGlVH45I9ey0JShH8xnPPryhnVn9Skl5KaY1Kqhu6QU0%26_nc_ohc%3DZ5iy_CpNs7oQ7kNvwEBINZM%26_nc_gid%3DUycKJq8zBbXEq3ycj8ZuEA%26edm%3DAEF8tYYBAAAA%26ccb%3D7-5%26oh%3D00_AfYnknm_LbNKqPJFPZfAh6yjXFpmB1UcjRy285stsDN2IA%26oe%3D68C7363D%26_nc_sid%3D1e20d2&filename=483596539_1694382911457322_2108413034767413608_n.jpg" alt="Logo" /></div>
+    <div class="logo">THE BAE BEAUTY SHOP!</div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search products..." />
+      <button onclick="searchProducts()">🔍</button>
     </div>
+    <nav class="nav-links"><a onclick="toggleCart()">Cart 🛒</a></nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h1>WELCOME TO THE BAE BEAUTY SHOP!!</h1>
+    <p>Deals. Discounts. Delivered.</p>
+  </section>
+
+  <!-- Products -->
+  <section class="products" id="productList">
+    <div class="product-card" data-name="Wireless Headphones">
+      <img src="https://via.placeholder.com/200" alt="Wireless Headphones" />
+      <h3>Wireless Headphones</h3>
+      <p>$49.99</p>
+      <button onclick="addToCart('Wireless Headphones', 'https://via.placeholder.com/200')">Add to Cart</button>
+    </div>
+    <div class="product-card" data-name="Smart Watch">
+      <img src="https://via.placeholder.com/200" alt="Smart Watch" />
+      <h3>Smart Watch</h3>
+      <p>$89.99</p>
+      <button onclick="addToCart('Smart Watch', 'https://via.placeholder.com/200')">Add to Cart</button>
+    </div>
+    <div class="product-card" data-name="Gaming Mouse">
+      <img src="https://via.placeholder.com/200" alt="Gaming Mouse" />
+      <h3>Gaming Mouse</h3>
+      <p>$29.99</p>
+      <button onclick="addToCart('Gaming Mouse', 'https://via.placeholder.com/200')">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- Cart Panel -->
+  <div class="cart-panel" id="cartPanel">
+    <button class="close-cart" onclick="toggleCart()">✖</button>
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cartItems"><p>No items yet.</p></div>
+    <button class="buy-now-btn" onclick="openCheckoutForm()">Buy Now</button>
   </div>
 
-  <!-- 720p Dropdown -->
-  <div class="dropdown q720">
-    <button class="main-btn">720p</button>
-    <button class="arrow-btn" onclick="toggleDropdown(this)">&#9660;</button>
-    <div class="dropdown-content">
-      <a href="https://cuty.io/HID8gmqJV">Episode 1</a>
-      <a href="https://cuty.io/M5bw1O">Episode 2</a>
-      <a href="https://cuty.io/wWFnpLp">Episode 3</a>
-      <a href="https://cuty.io/OhxlkBL8ye6">Episode 4</a>
-      <a href="https://cuty.io/vFfQOGXMS">Episode 5</a>
-      <a href="https://cuty.io/FRsB9fLuscO">Episode 6</a>
-      <a href="https://cuty.io/1Yiz">Episode 7</a>
-      <a href="https://cuty.io/vZwAXW9jZ">Episode 8</a>
-      <a href="https://cuty.io/WwcF96nR">Episode 9</a>
-      <a href="https://cuty.io/wZu2f8uUR">Episode 10</a>
-      <a href="https://cuty.io/Gt7NOD9hXg">Episode 11</a>
-      <a href="https://cuty.io/xl89GUobuN1">Episode 12</a>
-    </div>
-  </div>
+  <!-- Checkout Form -->
+  <div class="overlay" id="overlay"></div>
+  <form class="checkout-form" id="checkoutForm"
+        action="https://formspree.io/f/xandvppw"
+        method="POST">
+    <h3>Checkout</h3>
+    <label>Name:</label>
+    <input type="text" name="name" placeholder="Your Name" required />
+    <label>Phone No:</label>
+    <input type="text" name="phone" placeholder="10-digit Number" required />
+    <label>Address:</label>
+    <textarea name="address" placeholder="Your Address"></textarea>
+    <label>Pincode:</label>
+    <input type="text" name="pincode" placeholder="6-digit Pincode" required />
+
+    <label>Country:</label>
+    <select name="country"><option selected>India</option></select>
+
+    <label>City:</label>
+    <select id="citySelect" name="city" required>
+      <option value="">Select City</option>
+      <option>Delhi</option>
+      <option>Mumbai</option>
+      <option>Kolkata</option>
+      <option>Chennai</option>
+      <option>Bengaluru</option>
+      <option>Hyderabad</option>
+      <option>Lucknow</option>
+      <option>Kanpur</option>
+      <option>Pune</option>
+      <option>Jaipur</option>
+      <option>Ahmedabad</option>
+      <option>Varanasi</option>
+      <option>Surat</option>
+      <option>Indore</option>
+      <option>Patna</option>
+      <option>Bhopal</option>
+      <option>Nagpur</option>
+      <option>Ranchi</option>
+      <option>Guwahati</option>
+      <option>Chandigarh</option>
+      <option>Noida</option>
+      <option>Gurugram</option>
+      <option>Meerut</option>
+      <option>Agra</option>
+      <option>Prayagraj</option>
+      <option>Ghaziabad</option>
+      <option>Jodhpur</option>
+      <option>Amritsar</option>
+      <option>Ludhiana</option>
+      <option>Coimbatore</option>
+      <option>Madurai</option>
+      <option>Kochi</option>
+      <option>Thiruvananthapuram</option>
+      <option>Visakhapatnam</option>
+      <option>Vijayawada</option>
+      <option>Mysuru</option>
+      <option>Mangalore</option>
+    </select>
+
+    <label><input type="checkbox" name="cod" /> Cash on Delivery</label>
+    <button type="submit">Place Order</button>
+  </form>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 THE BAE BEAUTY SHOP . All rights reserved.</p>
+  </footer>
+
+  <!-- Choices.js for searchable dropdown -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
   <script>
-    function toggleDropdown(btn) {
-      let content = btn.nextElementSibling;
-      content.style.display = (content.style.display === "block") ? "none" : "block";
-    }
-  </script>
+    let cart = [];
 
+    function toggleCart() {
+      document.getElementById("cartPanel").classList.toggle("open");
+    }
+
+    function addToCart(name, img) {
+      cart.push({ name, img });
+      renderCart();
+      alert(`${name} added to cart!`);
+    }
+
+    function renderCart() {
+      const cartItems = document.getElementById("cartItems");
+      cartItems.innerHTML = "";
+      if (cart.length === 0) {
+        cartItems.innerHTML = "<p>No items yet.</p>";
+        return;
+      }
+      cart.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `<img src="${item.img}" alt="${item.name}" />
+                         <div class="cart-item-name">${item.name}</div>`;
+        cartItems.appendChild(div);
+      });
+    }
+
+    function searchProducts() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const productCards = document.querySelectorAll(".product-card");
+      productCards.forEach((card) => {
+        const name = card.getAttribute("data-name").toLowerCase();
+        card.style.display = name.includes(input) ? "block" : "none";
+      });
+    }
+    document.getElementById("searchInput").addEventListener("input", searchProducts);
+
+    function openCheckoutForm() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("checkoutForm").style.display = "block";
+    }
+
+    // Formspree AJAX submit
+    const form = document.getElementById("checkoutForm");
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("checkoutForm").style.display = "none";
+      document.getElementById("cartPanel").classList.remove("open");
+      cart = [];
+      renderCart();
+
+      alert("Thank you for choosing us! Your order will be delivered under 20 to 30 days.");
+    });
+
+    // Make city dropdown searchable
+    document.addEventListener("DOMContentLoaded", function() {
+      new Choices("#citySelect", {
+        searchEnabled: true,
+        itemSelectText: "",
+        shouldSort: false
+      });
+    });
+  </script>
 </body>
 </html>
-
