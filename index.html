@@ -24,7 +24,6 @@
 
     .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 40px; }
     .product-card { background-color: #1a1a1a; padding: 15px; border-radius: 6px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5); color: #fff; }
-    .product-card img { max-width: 100%; height: auto; margin-bottom: 10px; border: 2px solid #FFD700; }
     .product-card button { margin-top: 10px; background-color: #FFD700; border: none; padding: 8px 12px; color: #000; font-weight: bold; cursor: pointer; border-radius: 5px; }
 
     .footer { background-color: #000; color: #FFD700; text-align: center; padding: 15px 0; margin-top: 40px; }
@@ -50,13 +49,36 @@
       color: #fff !important;
       background-color: #222 !important;
     }
-    .choices__item--selectable {
-      color: #fff !important;
+    .choices__item--selectable { color: #fff !important; }
+    /* ✅ Selected value golden bold */
+    .choices__inner .choices__item { color: #FFD700 !important; font-weight: bold !important; }
+
+    /* ✅ Slider CSS */
+    .slider { position: relative; overflow: hidden; display: block; margin: 0 auto; }
+    .slide { display: none; width: 100%; object-fit: contain; border: 2px solid #FFD700; background: #111; padding: 10px; }
+    .slide.active { display: block; }
+    .slider .slide img { width: 100%; height: 260px; object-fit: contain; display: block; }
+
+    .arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.12); border: none; padding: 10px; border-radius: 50%; cursor: pointer; backdrop-filter: blur(2px); }
+    .arrow svg { width: 20px; height: 20px; display: block; }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    .dots { text-align: center; margin-top: 8px; }
+    .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.2); margin: 0 5px; cursor: pointer; }
+    .dot.active { background: #FFD700; }
+
+    .desc { margin-top: 10px; font-size: 14px; color: #ccc; }
+
+    /* ✅ Mobile view */
+    @media (max-width: 420px) {
+      .slider .slide img { height: 200px; }
     }
-    /* ✅ Selected value yellow + bold */
-    .choices__inner .choices__item {
-      color: #FFD700 !important;
-      font-weight: bold !important;
+
+    /* ✅ Laptop / PC view */
+    @media (min-width: 768px) {
+      .slider .slide img { height: 350px; }
+      .slide { max-height: 380px; }
     }
   </style>
 </head>
@@ -81,10 +103,28 @@
   <!-- Products -->
   <section class="products" id="productList">
     <div class="product-card" data-name="LIPSTICK">
-      <img src="https://www.ecosattvastore.com/media/catalog/product/cache/731d4a550075ebece82647cba30eb8c3/7/1/71u8whfkyrl._sx679_.jpg" alt="LIPSTICK" />
+      <div class="slider" id="lipstickSlider">
+        <button class="arrow left" id="prevBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="slide active" data-index="0">
+          <img src="https://www.ecosattvastore.com/media/catalog/product/cache/731d4a550075ebece82647cba30eb8c3/7/1/71u8whfkyrl._sx679_.jpg" alt="LIPSTICK" />
+        </div>
+        <div class="slide" data-index="1">
+          <img src="https://www.minifeel.in/cdn/shop/files/DisguiseCosmeticsUltra-ComfortableSatinMatteLipstick-RedModel2.jpg?v=1755857921" alt="LIPSTICK 2" />
+        </div>
+        <button class="arrow right" id="nextBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+      <div class="dots" id="lipstickDots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+      </div>
       <h3>LIPSTICK</h3>
-      <p> ₹150 RS</p>
-      <button onclick="addToCart('LIPSTICK', 'https://www.ecosattvastore.com/media/catalog/product/cache/731d4a550075ebece82647cba30eb8c3/7/1/71u8whfkyrl._sx679_.jpg')">Add to Cart</button>
+      <p>₹150 RS</p>
+      <p class="desc"><B>✨Our premium matte lipstick delivers </B><BR><b>✨intense color payoff</b><BR><B>✨LIPSTICK in just one swipe.<BR>✨ Enriched with nourishing oils and vitamin E<BR>✨ it keeps your lips soft and hydrated all day long. <BR>✨Its <b>lightweight, smudge-proof<BR> formula ensures comfortable wear<BR>✨whether it’s for office, party, or everyday glamour.<BR> 💄Available in universal shades designed to suit every skin tone.</p>
+      <button onclick="addToCart('LIPSTICK', getCurrentSlideSrc())">Add to Cart</button>
     </div>
   </section>
 
@@ -98,9 +138,7 @@
 
   <!-- Checkout Form -->
   <div class="overlay" id="overlay"></div>
-  <form class="checkout-form" id="checkoutForm"
-        action="https://formspree.io/f/xandvppw"
-        method="POST">
+  <form class="checkout-form" id="checkoutForm" action="https://formspree.io/f/xandvppw" method="POST">
     <h3>Checkout</h3>
     <label>Name:</label>
     <input type="text" name="name" placeholder="Your Name" required />
@@ -110,10 +148,8 @@
     <textarea name="address" placeholder="Your Address"></textarea>
     <label>Pincode:</label>
     <input type="text" name="pincode" placeholder="6-digit Pincode" required />
-
     <label>Country:</label>
     <select name="country"><option selected>India</option></select>
-
     <label>State:</label>
     <select id="stateSelect" name="state" required>
       <option value="">Select State</option>
@@ -139,7 +175,6 @@
       <option>Telangana</option>
       <option>Andhra Pradesh</option>
     </select>
-
     <label>City:</label>
     <select id="citySelect" name="city" required>
       <option value="">Select City</option>
@@ -156,10 +191,7 @@
       <option>Ahmedabad</option>
       <option>Varanasi</option>
     </select>
-
-    <!-- Hidden input for order items -->
     <input type="hidden" name="order_items" id="orderItemsInput">
-
     <label><input type="checkbox" name="cod" /> Cash on Delivery</label>
     <button type="submit">Place Order</button>
   </form>
@@ -169,96 +201,33 @@
     <p>&copy; 2025 THE BAE BEAUTY SHOP . All rights reserved.</p>
   </footer>
 
-  <!-- Choices.js for searchable dropdown -->
+  <!-- Choices.js -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
   <script>
     let cart = [];
-
-    function toggleCart() {
-      document.getElementById("cartPanel").classList.toggle("open");
-    }
-
-    function addToCart(name, img) {
-      cart.push({ name, img });
-      renderCart();
-      alert(`${name} added to cart!`);
-    }
-
-    function renderCart() {
-      const cartItems = document.getElementById("cartItems");
-      cartItems.innerHTML = "";
-      if (cart.length === 0) {
-        cartItems.innerHTML = "<p>No items yet.</p>";
-        return;
-      }
-      cart.forEach((item) => {
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `<img src="${item.img}" alt="${item.name}" />
-                         <div class="cart-item-name">${item.name}</div>`;
-        cartItems.appendChild(div);
-      });
-    }
-
-    function searchProducts() {
-      const input = document.getElementById("searchInput").value.toLowerCase();
-      const productCards = document.querySelectorAll(".product-card");
-      productCards.forEach((card) => {
-        const name = card.getAttribute("data-name").toLowerCase();
-        card.style.display = name.includes(input) ? "block" : "none";
-      });
-    }
-    document.getElementById("searchInput").addEventListener("input", searchProducts);
-
-    function openCheckoutForm() {
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-      document.getElementById("overlay").style.display = "block";
-      document.getElementById("checkoutForm").style.display = "block";
-    }
-
-    // Formspree AJAX submit
-    const form = document.getElementById("checkoutForm");
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
-
-      // cart items ko string me convert karke hidden input me bhejna
-      const orderSummary = cart.map(item => item.name).join(", ");
-      document.getElementById("orderItemsInput").value = orderSummary;
-
-      const data = new FormData(form);
-
-      await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      document.getElementById("overlay").style.display = "none";
-      document.getElementById("checkoutForm").style.display = "none";
-      document.getElementById("cartPanel").classList.remove("open");
-      cart = [];
-      renderCart();
-
-      alert("Thank you for choosing us! Your order will be delivered under 20 to 30 days.");
-    });
-
-    // Make city & state dropdown searchable
-    document.addEventListener("DOMContentLoaded", function() {
-      new Choices("#citySelect", {
-        searchEnabled: true,
-        itemSelectText: "",
-        shouldSort: false
-      });
-      new Choices("#stateSelect", {
-        searchEnabled: true,
-        itemSelectText: "",
-        shouldSort: false
-      });
+    function toggleCart(){document.getElementById("cartPanel").classList.toggle("open");}
+    function addToCart(name,img){const imageSrc=img||document.querySelector(".product-card img")?.src||"";cart.push({name,img:imageSrc});renderCart();alert(`${name} added to cart!`);}
+    function renderCart(){const cartItems=document.getElementById("cartItems");cartItems.innerHTML="";if(cart.length===0){cartItems.innerHTML="<p>No items yet.</p>";return;}cart.forEach((item)=>{const div=document.createElement("div");div.className="cart-item";div.innerHTML=`<img src="${item.img}" alt="${item.name}" /><div class="cart-item-name">${item.name}</div>`;cartItems.appendChild(div);});}
+    function searchProducts(){const input=document.getElementById("searchInput").value.toLowerCase();document.querySelectorAll(".product-card").forEach((card)=>{const name=card.getAttribute("data-name").toLowerCase();card.style.display=name.includes(input)?"block":"none";});}
+    document.getElementById("searchInput").addEventListener("input",searchProducts);
+    function openCheckoutForm(){if(cart.length===0){alert("Your cart is empty!");return;}document.getElementById("overlay").style.display="block";document.getElementById("checkoutForm").style.display="block";}
+    const form=document.getElementById("checkoutForm");
+    form.addEventListener("submit",async function(e){e.preventDefault();document.getElementById("orderItemsInput").value=cart.map(item=>item.name).join(", ");const data=new FormData(form);await fetch(form.action,{method:form.method,body:data,headers:{'Accept':'application/json'}});document.getElementById("overlay").style.display="none";document.getElementById("checkoutForm").style.display="none";document.getElementById("cartPanel").classList.remove("open");cart=[];renderCart();alert("Thank you for choosing us! Your order will be delivered under 20 to 30 days.");});
+    document.addEventListener("DOMContentLoaded",function(){
+      new Choices("#citySelect",{searchEnabled:true,itemSelectText:"",shouldSort:false});
+      new Choices("#stateSelect",{searchEnabled:true,itemSelectText:"",shouldSort:false});
+      const slider=document.getElementById("lipstickSlider");
+      const slides=slider.querySelectorAll(".slide");
+      const dots=document.getElementById("lipstickDots").querySelectorAll(".dot");
+      let current=0;
+      function showSlide(index){if(index<0)index=slides.length-1;if(index>=slides.length)index=0;slides.forEach(s=>s.classList.remove("active"));dots.forEach(d=>d.classList.remove("active"));slides[index].classList.add("active");dots[index].classList.add("active");current=index;}
+      document.getElementById("prevBtn").addEventListener("click",e=>{e.stopPropagation();showSlide(current-1);});
+      document.getElementById("nextBtn").addEventListener("click",e=>{e.stopPropagation();showSlide(current+1);});
+      dots.forEach(d=>d.addEventListener("click",function(){showSlide(parseInt(this.dataset.index,10));}));
+      window.getCurrentSlideSrc=()=>slider.querySelector(".slide.active img")?.src||"";
+      showSlide(0);
     });
   </script>
 </body>
