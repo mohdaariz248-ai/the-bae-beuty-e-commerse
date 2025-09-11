@@ -1,8 +1,10 @@
 {
   "name": "THE BAE BEAUTY SHOP",
   "short_name": "BaeBeauty",
-  "start_url": "./GHODA.HTML",
+  "start_url": "https://thebaebeautyshop.netlify.app/",
+  "scope": "https://thebaebeautyshop.netlify.app/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#000000",
   "theme_color": "#FFD700",
   "icons": [
