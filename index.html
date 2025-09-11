@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
   <!-- Website Logo / Favicon -->
   <link rel="icon" type="image/jpeg" href="https://cdn.leonardo.ai/users/a2686d7b-6c74-43b3-905f-6655b867bb8b/generations/54eec891-f8bd-4ac7-be42-0c395aacd855/segments/4:4:1/Lucid_Origin_A_luxury_cosmetic_brand_logo_design_featuring_a_g_3.jpg">
   <meta charset="UTF-8" />
@@ -229,6 +231,11 @@
       window.getCurrentSlideSrc=()=>slider.querySelector(".slide.active img")?.src||"";
       showSlide(0);
     });
+    if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+
   </script>
 </body>
 </html>
+
