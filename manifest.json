@@ -1,0 +1,20 @@
+{
+  "name": "THE BAE BEAUTY SHOP",
+  "short_name": "BaeBeauty",
+  "start_url": "./GHODA.HTML",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFD700",
+  "icons": [
+    {
+      "src": "https://cdn.leonardo.ai/users/a2686d7b-6c74-43b3-905f-6655b867bb8b/generations/54eec891-f8bd-4ac7-be42-0c395aacd855/segments/4:4:1/Lucid_Origin_A_luxury_cosmetic_brand_logo_design_featuring_a_g_3.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.leonardo.ai/users/a2686d7b-6c74-43b3-905f-6655b867bb8b/generations/54eec891-f8bd-4ac7-be42-0c395aacd855/segments/4:4:1/Lucid_Origin_A_luxury_cosmetic_brand_logo_design_featuring_a_g_3.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
