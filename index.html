@@ -108,25 +108,18 @@
         <select name="country" disabled><option selected>India</option></select>
         <label>State:</label>
         <select name="state" required>
-          <option value="">Select State</option>
-          <option>Uttar Pradesh</option><option>Maharashtra</option><option>Delhi</option><option>Bihar</option>
-          <option>Madhya Pradesh</option><option>Punjab</option><option>Haryana</option><option>Rajasthan</option>
-          <option>Karnataka</option><option>Tamil Nadu</option><option>Kerala</option><option>West Bengal</option>
-          <option>Gujarat</option><option>Odisha</option><option>Assam</option><option>Jharkhand</option>
-          <option>Chhattisgarh</option><option>Himachal Pradesh</option><option>Uttarakhand</option>
+          <option value="">Select State</option><option>Uttar Pradesh</option><option>Maharashtra</option><option>Delhi</option>
+          <option>Bihar</option><option>Madhya Pradesh</option><option>Punjab</option><option>Haryana</option>
+          <option>Rajasthan</option><option>Karnataka</option><option>Tamil Nadu</option><option>Kerala</option>
+          <option>West Bengal</option><option>Gujarat</option><option>Odisha</option><option>Assam</option>
+          <option>Jharkhand</option><option>Chhattisgarh</option><option>Himachal Pradesh</option><option>Uttarakhand</option>
           <option>Telangana</option><option>Andhra Pradesh</option>
         </select>
         <label>City:</label>
         <select name="city" required>
-          <option value="">Select City</option>
-          <option>Delhi</option><option>Mumbai</option><option>Kolkata</option><option>Chennai</option>
-          <option>Bengaluru</option><option>Hyderabad</option><option>Lucknow</option><option>Kanpur</option>
-          <option>Pune</option><option>Jaipur</option><option>Ahmedabad</option><option>Varanasi</option>
-          <option>Patna</option><option>Bhopal</option><option>Indore</option><option>Chandigarh</option>
-          <option>Amritsar</option><option>Surat</option><option>Vadodara</option><option>Bhubaneswar</option>
-          <option>Guwahati</option><option>Ranchi</option><option>Raipur</option><option>Shimla</option>
-          <option>Dehradun</option><option>Visakhapatnam</option><option>Warangal</option><option>Coimbatore</option>
-          <option>Madurai</option><option>Kochi</option><option>Thiruvananthapuram</option>
+          <option value="">Select City</option><option>Delhi</option><option>Mumbai</option><option>Kolkata</option>
+          <option>Chennai</option><option>Bengaluru</option><option>Hyderabad</option><option>Lucknow</option>
+          <option>Kanpur</option><option>Pune</option><option>Jaipur</option><option>Ahmedabad</option><option>Varanasi</option>
         </select>
         <input type="hidden" name="order_items" id="orderItemsInput"/>
         <label><input type="checkbox" name="cod"/> Cash on Delivery</label>
@@ -138,49 +131,28 @@
   </div>
 
   <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAAEpjbx1EY14IRe9CJlM3wqerJEFmPu6Q",
-      authDomain: "the-bae-beauty.firebaseapp.com",
-      projectId: "the-bae-beauty",
-      storageBucket: "the-bae-beauty.firebasestorage.app",
-      messagingSenderId: "989629586947",
-      appId: "1:989629586947:web:e333a2f2d68a54ffd57836",
-      measurementId: "G-N2PG8QGDE2"
-    };
-
+    const firebaseConfig={apiKey:"YOUR_KEY",authDomain:"YOUR_PROJECT.firebaseapp.com",projectId:"YOUR_PROJECT",appId:"YOUR_APPID"};
     firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("mainSite").style.display = "block";
-        document.getElementById("welcomeText").style.display = "inline";
-        document.getElementById("welcomeText").innerText =
-          "Welcome " + (user.displayName || user.email);
-        document.getElementById("logoutBtn").style.display = "inline";
-      } else {
-        document.getElementById("loginScreen").style.display = "flex";
-        document.getElementById("mainSite").style.display = "none";
+    const auth=firebase.auth();
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        document.getElementById("loginScreen").style.display="none";
+        document.getElementById("mainSite").style.display="block";
+        document.getElementById("welcomeText").style.display="inline";
+        document.getElementById("welcomeText").innerText="Welcome "+(user.displayName||user.email);
+        document.getElementById("logoutBtn").style.display="inline";
+      }else{
+        document.getElementById("loginScreen").style.display="flex";
+        document.getElementById("mainSite").style.display="none";
       }
     });
-
-    function googleLogin() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).catch(err => {
-        alert("Login failed: " + err.message);
-      });
-    }
-
-    function logout() {
-      auth.signOut();
-    }
+    function googleLogin(){const p=new firebase.auth.GoogleAuthProvider();auth.signInWithPopup(p);}
+    function logout(){auth.signOut();}
   </script>
 
-  <!-- Cart + Shop Functions -->
   <script>
     let cart=JSON.parse(localStorage.getItem("cart_v1"))||[];const DELIVERY=50;
     function saveCart(){localStorage.setItem("cart_v1",JSON.stringify(cart));updateCartCount();}
