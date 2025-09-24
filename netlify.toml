@@ -1,1 +1,4 @@
-
+[[headers]]
+ for = "/*"
+ [headers.values]
+   cache-contrl = "no-cache, no-store, must-revalidate"
