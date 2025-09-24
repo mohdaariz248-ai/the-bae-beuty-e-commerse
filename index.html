@@ -1,242 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>THE BAE BEAUTY SHOP!</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
-  <!-- Website Logo / Favicon -->
-  <link rel="icon" type="image/jpeg" href="https://cdn.leonardo.ai/users/a2686d7b-6c74-43b3-905f-6655b867bb8b/generations/54eec891-f8bd-4ac7-be42-0c395aacd855/segments/4:4:1/Lucid_Origin_A_luxury_cosmetic_brand_logo_design_featuring_a_g_3.jpg">
-  <meta charset="UTF-8" />
-  <title>THE BAE BEAUTY SHOP!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; background-color: #111; color: #fff; }
-
-    .header { display: flex; align-items: center; background-color: #000; padding: 15px 20px; color: #FFD700; position: relative; }
-    .left-image img { height: 40px; margin-right: 15px; border-radius: 5px; object-fit: contain; display: block; }
-    .logo { font-size: 24px; font-weight: bold; color: #FFD700; }
-
-    .search-box { flex: 1; display: flex; margin: 0 20px; }
-    .search-box input { width: 100%; padding: 8px; border: 1px solid #FFD700; background: #222; color: #fff; border-radius: 4px 0 0 4px; }
-    .search-box button { padding: 8px 12px; border: none; background-color: #FFD700; color: #000; font-weight: bold; border-radius: 0 4px 4px 0; cursor: pointer; }
-
-    .nav-links a { margin-left: 15px; color: #FFD700; text-decoration: none; cursor: pointer; }
-
-    .banner { background-color: #000; color: #FFD700; text-align: center; padding: 30px 0; }
-
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 40px; }
-    .product-card { background-color: #1a1a1a; padding: 15px; border-radius: 6px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.5); color: #fff; }
-    .product-card button { margin-top: 10px; background-color: #FFD700; border: none; padding: 8px 12px; color: #000; font-weight: bold; cursor: pointer; border-radius: 5px; }
-
-    .footer { background-color: #000; color: #FFD700; text-align: center; padding: 15px 0; margin-top: 40px; }
-
-    .cart-panel { position: fixed; top: 0; right: -320px; width: 320px; height: 100%; background-color: #1a1a1a; color: #fff; box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); padding: 20px; transition: right 0.3s ease-in-out; z-index: 1000; overflow-y: auto; }
-    .cart-panel.open { right: 0; }
-    .close-cart { background-color: #FFD700; color: #000; border: none; padding: 5px 10px; float: right; cursor: pointer; font-weight: bold; }
-    .cart-items img { width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border: 2px solid #FFD700; }
-    .cart-item { display: flex; align-items: center; margin-bottom: 10px; }
-    .cart-item-name { flex: 1; }
-
-    .buy-now-btn { margin-top: 20px; width: 100%; background-color: #FFD700; color: #000; padding: 10px; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
-
-    .checkout-form { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1a1a1a; color: #fff; padding: 25px; box-shadow: 0 0 10px rgba(255,215,0,0.5); z-index: 2000; width: 300px; border: 2px solid #FFD700; border-radius: 8px; }
-    .checkout-form input, .checkout-form textarea, .checkout-form select { width: 100%; padding: 8px; margin-top: 10px; background: #222; border: 1px solid #FFD700; color: #fff; border-radius: 4px; }
-    .checkout-form label { margin-top: 10px; display: block; }
-    .checkout-form button { margin-top: 15px; padding: 10px; background-color: #FFD700; color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 5px; }
-
-    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; }
-
-    /* ✅ Choices.js dropdown fix */
-    .choices__list--dropdown .choices__item {
-      color: #fff !important;
-      background-color: #222 !important;
-    }
-    .choices__item--selectable { color: #fff !important; }
-    /* ✅ Selected value golden bold */
-    .choices__inner .choices__item { color: #FFD700 !important; font-weight: bold !important; }
-
-    /* ✅ Slider CSS */
-    .slider { position: relative; overflow: hidden; display: block; margin: 0 auto; }
-    .slide { display: none; width: 100%; object-fit: contain; border: 2px solid #FFD700; background: #111; padding: 10px; }
-    .slide.active { display: block; }
-    .slider .slide img { width: 100%; height: 260px; object-fit: contain; display: block; }
-
-    .arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.12); border: none; padding: 10px; border-radius: 50%; cursor: pointer; backdrop-filter: blur(2px); }
-    .arrow svg { width: 20px; height: 20px; display: block; }
-    .arrow.left { left: 10px; }
-    .arrow.right { right: 10px; }
-
-    .dots { text-align: center; margin-top: 8px; }
-    .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.2); margin: 0 5px; cursor: pointer; }
-    .dot.active { background: #FFD700; }
-
-    .desc { margin-top: 10px; font-size: 14px; color: #ccc; }
-
-    /* ✅ Mobile view */
-    @media (max-width: 420px) {
-      .slider .slide img { height: 200px; }
-    }
-
-    /* ✅ Laptop / PC view */
-    @media (min-width: 768px) {
-      .slider .slide img { height: 350px; }
-      .slide { max-height: 380px; }
-    }
-  </style>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,sans-serif;background:#111;color:#fff;min-height:100vh}
+  .header{display:flex;align-items:center;gap:16px;padding:12px 18px;background:#000;color:#FFD700}
+  .logo{font-size:20px;font-weight:700;color:#FFD700}
+  .search-box{flex:1;display:flex}
+  .search-box input{width:100%;padding:8px;border:1px solid #FFD700;background:#222;color:#fff;border-radius:4px 0 0 4px}
+  .search-box button{padding:8px 12px;border:none;background:#FFD700;color:#000;font-weight:700;border-radius:0 4px 4px 0;cursor:pointer}
+  .nav-links{display:flex;gap:12px;align-items:center}
+  .nav-links a{color:#FFD700;text-decoration:none;cursor:pointer}
+  .banner{text-align:center;padding:26px 10px;background:#000;color:#FFD700}
+  .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;padding:30px}
+  .product-card{background:#1a1a1a;padding:12px;border-radius:8px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.5);cursor:pointer}
+  .product-card img{width:100%;height:200px;object-fit:contain;border:2px solid #FFD700;padding:8px;background:#111;border-radius:6px}
+  .footer{background:#000;color:#FFD700;text-align:center;padding:12px;margin-top:30px}
+  .cart-panel{position:fixed;inset:0;background:#1a1a1a;color:#fff;padding:20px;z-index:999;display:none;overflow:auto}
+  .cart-panel.open{display:block}
+  .close-cart{background:#FFD700;color:#000;border:none;padding:6px 10px;cursor:pointer;font-weight:700;border-radius:6px;float:right}
+  .cart-item{display:flex;align-items:center;justify-content:space-between;padding:8px 6px;border-bottom:1px solid rgba(255,215,0,0.06)}
+  .cart-item img{width:60px;height:60px;object-fit:cover;border:2px solid #FFD700;border-radius:6px}
+  .buy-now-btn{display:block;margin-top:18px;width:100%;padding:12px;border:none;background:#FFD700;color:#000;font-weight:700;border-radius:6px;cursor:pointer}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:900;display:none}
+  .modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#1a1a1a;padding:18px;border-radius:8px;border:2px solid #FFD700;z-index:1000;width:92%;max-width:780px;max-height:90vh;overflow:auto;display:none}
+  .modal.open{display:block}
+  .modal img{width:100%;height:320px;object-fit:contain;border:2px solid #FFD700;background:#111;border-radius:6px}
+  .qty-controls button{padding:6px 10px;border:none;background:#FFD700;color:#000;font-weight:700;border-radius:6px;cursor:pointer}
+  .qty-display{min-width:36px;text-align:center;display:inline-block}
+  @media(min-width:1024px){.product-card img{height:260px}.modal img{height:420px}}
+  @media(max-width:520px){.header{flex-direction:column;gap:8px;padding:10px}.search-box{order:2}.logo{order:1}.nav-links{order:3;justify-content:flex-end}.product-card img{height:180px}.modal img{height:280px}}
+  /* Fullscreen login lock */
+  #loginScreen{position:fixed;inset:0;background:#000;color:#FFD700;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:2000}
+  #loginScreen button{margin-top:20px;padding:12px 18px;background:#FFD700;color:#000;font-weight:700;border:none;border-radius:6px;cursor:pointer}
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="left-image"><img src="https://cdn.leonardo.ai/users/a2686d7b-6c74-43b3-905f-6655b867bb8b/generations/54eec891-f8bd-4ac7-be42-0c395aacd855/segments/4:4:1/Lucid_Origin_A_luxury_cosmetic_brand_logo_design_featuring_a_g_3.jpg" alt="Logo" /></div>
-    <div class="logo">THE BAE BEAUTY SHOP!</div>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search products..." />
-      <button onclick="searchProducts()">🔍</button>
-    </div>
-    <nav class="nav-links"><a onclick="toggleCart()">Cart 🛒</a></nav>
-  </header>
-
-  <!-- Banner -->
-  <section class="banner">
-    <h1>WELCOME TO THE BAE BEAUTY SHOP!!</h1>
-    <p>Deals. Discounts. Delivered.</p>
-  </section>
-
-  <!-- Products -->
-  <section class="products" id="productList">
-    <div class="product-card" data-name="LIPSTICK">
-      <div class="slider" id="lipstickSlider">
-        <button class="arrow left" id="prevBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <div class="slide active" data-index="0">
-          <img src="https://www.ecosattvastore.com/media/catalog/product/cache/731d4a550075ebece82647cba30eb8c3/7/1/71u8whfkyrl._sx679_.jpg" alt="LIPSTICK" />
-        </div>
-        <div class="slide" data-index="1">
-          <img src="https://www.minifeel.in/cdn/shop/files/DisguiseCosmeticsUltra-ComfortableSatinMatteLipstick-RedModel2.jpg?v=1755857921" alt="LIPSTICK 2" />
-        </div>
-        <button class="arrow right" id="nextBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </div>
-      <div class="dots" id="lipstickDots">
-        <span class="dot active" data-index="0"></span>
-        <span class="dot" data-index="1"></span>
-      </div>
-      <h3>LIPSTICK</h3>
-      <p>₹150 RS</p>
-      <p class="desc"><B>✨Our premium matte lipstick delivers </B><BR><b>✨intense color payoff</b><BR><B>✨LIPSTICK in just one swipe.<BR>✨ Enriched with nourishing oils and vitamin E<BR>✨ it keeps your lips soft and hydrated all day long. <BR>✨Its <b>lightweight, smudge-proof<BR> formula ensures comfortable wear<BR>✨whether it’s for office, party, or everyday glamour.<BR> 💄Available in universal shades designed to suit every skin tone.</p>
-      <button onclick="addToCart('LIPSTICK', getCurrentSlideSrc())">Add to Cart</button>
-    </div>
-  </section>
-
-  <!-- Cart Panel -->
-  <div class="cart-panel" id="cartPanel">
-    <button class="close-cart" onclick="toggleCart()">✖</button>
-    <h2>Your Cart</h2>
-    <div class="cart-items" id="cartItems"><p>No items yet.</p></div>
-    <button class="buy-now-btn" onclick="openCheckoutForm()">Buy Now</button>
+  <!-- Fullscreen login block -->
+  <div id="loginScreen">
+    <h1>LOGIN FIRST</h1>
+    <button onclick="googleLogin()">Login with Google</button>
   </div>
 
-  <!-- Checkout Form -->
-  <div class="overlay" id="overlay"></div>
-  <form class="checkout-form" id="checkoutForm" action="https://formspree.io/f/xandvppw" method="POST">
-    <h3>Checkout</h3>
-    <label>Name:</label>
-    <input type="text" name="name" placeholder="Your Name" required />
-    <label>Phone No:</label>
-    <input type="text" name="phone" placeholder="10-digit Number" required />
-    <label>Address:</label>
-    <textarea name="address" placeholder="Your Address"></textarea>
-    <label>Pincode:</label>
-    <input type="text" name="pincode" placeholder="6-digit Pincode" required />
-    <label>Country:</label>
-    <select name="country"><option selected>India</option></select>
-    <label>State:</label>
-    <select id="stateSelect" name="state" required>
-      <option value="">Select State</option>
-      <option>Uttar Pradesh</option>
-      <option>Maharashtra</option>
-      <option>Delhi</option>
-      <option>Bihar</option>
-      <option>Madhya Pradesh</option>
-      <option>Punjab</option>
-      <option>Haryana</option>
-      <option>Rajasthan</option>
-      <option>Karnataka</option>
-      <option>Tamil Nadu</option>
-      <option>Kerala</option>
-      <option>West Bengal</option>
-      <option>Gujarat</option>
-      <option>Odisha</option>
-      <option>Assam</option>
-      <option>Jharkhand</option>
-      <option>Chhattisgarh</option>
-      <option>Himachal Pradesh</option>
-      <option>Uttarakhand</option>
-      <option>Telangana</option>
-      <option>Andhra Pradesh</option>
-    </select>
-    <label>City:</label>
-    <select id="citySelect" name="city" required>
-      <option value="">Select City</option>
-      <option>Delhi</option>
-      <option>Mumbai</option>
-      <option>Kolkata</option>
-      <option>Chennai</option>
-      <option>Bengaluru</option>
-      <option>Hyderabad</option>
-      <option>Lucknow</option>
-      <option>Kanpur</option>
-      <option>Pune</option>
-      <option>Jaipur</option>
-      <option>Ahmedabad</option>
-      <option>Varanasi</option>
-    </select>
-    <input type="hidden" name="order_items" id="orderItemsInput">
-    <label><input type="checkbox" name="cod" /> Cash on Delivery</label>
-    <button type="submit">Place Order</button>
-  </form>
+  <!-- Main Website -->
+  <div id="mainSite" style="display:none">
+    <header class="header">
+      <div class="logo">THE BAE BEAUTY SHOP!</div>
+      <div class="search-box"><input id="searchInput" placeholder="Search..." oninput="searchProducts()" /><button onclick="searchProducts()">🔍</button></div>
+      <div class="nav-links" id="navLinks">
+        <span id="welcomeText" style="display:none"></span>
+        <a id="logoutBtn" onclick="logout()" style="display:none">Logout</a>
+        <a onclick="openCart()">Cart 🛒 (<span id="cartCount">0</span>)</a>
+      </div>
+    </header>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 THE BAE BEAUTY SHOP . All rights reserved.</p>
-  </footer>
+    <section class="banner"><h1>WELCOME TO THE BAE BEAUTY SHOP!!</h1><p>Deals. Discounts. Delivered.</p></section>
 
-  <!-- Choices.js -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <section class="products">
+      <div class="product-card" data-name="LIPSTICK" data-price="150" onclick="openProductModalFromCard(this)">
+        <img src="https://www.ecosattvastore.com/media/catalog/product/cache/731d4a550075ebece82647cba30eb8c3/7/1/71u8whfkyrl._sx679_.jpg"/>
+        <h3>LIPSTICK</h3>
+        <p>₹150</p>
+        <p class="desc" style="font-size:13px;color:#ccc">✨Premium matte lipstick with oils & vitamin E.</p>
+      </div>
+    </section>
 
+    <div class="cart-panel" id="cartPanel">
+      <button class="close-cart" onclick="closeCart()">✖</button>
+      <h2>Your Cart</h2>
+      <div class="cart-items" id="cartItems"><p>No items yet.</p></div>
+      <div style="margin-top:18px"><h3>Delivery: ₹50</h3><h2 id="cartTotal">Total: ₹0</h2></div>
+      <button class="buy-now-btn" onclick="openCheckout()">Buy Now</button>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="productModal">
+      <button onclick="closeProductModal()" style="float:right;background:#FFD700;color:#000;border:none;padding:6px 8px;border-radius:6px">Close</button>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImg"/>
+      <p id="modalDesc" style="margin:10px 0;color:#ccc"></p>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong id="modalPrice" style="color:#FFD700"></strong>
+        <div><button onclick="modalChangeQty(-1)">-</button><span id="modalQty" class="qty-display">1</span><button onclick="modalChangeQty(1)">+</button></div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:10px">
+        <button onclick="modalAddToCart()" style="flex:1;background:#FFD700;color:#000;border:none;padding:10px;font-weight:700;border-radius:6px">Add to Cart</button>
+        <button onclick="openCheckout()" style="flex:1;border:1px solid #FFD700;background:transparent;color:#FFD700;padding:10px;border-radius:6px">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="modal" id="checkoutModal" style="max-width:420px">
+      <button onclick="closeCheckout()" style="float:right;background:#FFD700;color:#000;border:none;padding:6px 8px;border-radius:6px">Close</button>
+      <h2 style="color:#FFD700">Checkout</h2>
+      <form id="checkoutForm" action="https://formspree.io/f/xandvppw" method="POST">
+        <label>Name:</label><input type="text" name="name" required />
+        <label>Phone No:</label><input type="text" name="phone" required />
+        <label>Address:</label><textarea name="address"></textarea>
+        <label>Pincode:</label><input type="text" name="pincode"/>
+        <label>Country:</label>
+        <select name="country" disabled><option selected>India</option></select>
+        <label>State:</label>
+        <select name="state" required>
+          <option value="">Select State</option>
+          <option>Uttar Pradesh</option><option>Maharashtra</option><option>Delhi</option><option>Bihar</option>
+          <option>Madhya Pradesh</option><option>Punjab</option><option>Haryana</option><option>Rajasthan</option>
+          <option>Karnataka</option><option>Tamil Nadu</option><option>Kerala</option><option>West Bengal</option>
+          <option>Gujarat</option><option>Odisha</option><option>Assam</option><option>Jharkhand</option>
+          <option>Chhattisgarh</option><option>Himachal Pradesh</option><option>Uttarakhand</option>
+          <option>Telangana</option><option>Andhra Pradesh</option>
+        </select>
+        <label>City:</label>
+        <select name="city" required>
+          <option value="">Select City</option>
+          <option>Delhi</option><option>Mumbai</option><option>Kolkata</option><option>Chennai</option>
+          <option>Bengaluru</option><option>Hyderabad</option><option>Lucknow</option><option>Kanpur</option>
+          <option>Pune</option><option>Jaipur</option><option>Ahmedabad</option><option>Varanasi</option>
+          <option>Patna</option><option>Bhopal</option><option>Indore</option><option>Chandigarh</option>
+          <option>Amritsar</option><option>Surat</option><option>Vadodara</option><option>Bhubaneswar</option>
+          <option>Guwahati</option><option>Ranchi</option><option>Raipur</option><option>Shimla</option>
+          <option>Dehradun</option><option>Visakhapatnam</option><option>Warangal</option><option>Coimbatore</option>
+          <option>Madurai</option><option>Kochi</option><option>Thiruvananthapuram</option>
+        </select>
+        <input type="hidden" name="order_items" id="orderItemsInput"/>
+        <label><input type="checkbox" name="cod"/> Cash on Delivery</label>
+        <button type="submit" style="margin-top:12px;background:#FFD700;color:#000;border:none;padding:10px;font-weight:700;border-radius:6px">Place Order</button>
+      </form>
+    </div>
+
+    <footer class="footer"><p>&copy; 2025 THE BAE BEAUTY SHOP . All rights reserved.</p></footer>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
   <script>
-    let cart = [];
-    function toggleCart(){document.getElementById("cartPanel").classList.toggle("open");}
-    function addToCart(name,img){const imageSrc=img||document.querySelector(".product-card img")?.src||"";cart.push({name,img:imageSrc});renderCart();alert(`${name} added to cart!`);}
-    function renderCart(){const cartItems=document.getElementById("cartItems");cartItems.innerHTML="";if(cart.length===0){cartItems.innerHTML="<p>No items yet.</p>";return;}cart.forEach((item)=>{const div=document.createElement("div");div.className="cart-item";div.innerHTML=`<img src="${item.img}" alt="${item.name}" /><div class="cart-item-name">${item.name}</div>`;cartItems.appendChild(div);});}
-    function searchProducts(){const input=document.getElementById("searchInput").value.toLowerCase();document.querySelectorAll(".product-card").forEach((card)=>{const name=card.getAttribute("data-name").toLowerCase();card.style.display=name.includes(input)?"block":"none";});}
-    document.getElementById("searchInput").addEventListener("input",searchProducts);
-    function openCheckoutForm(){if(cart.length===0){alert("Your cart is empty!");return;}document.getElementById("overlay").style.display="block";document.getElementById("checkoutForm").style.display="block";}
-    const form=document.getElementById("checkoutForm");
-    form.addEventListener("submit",async function(e){e.preventDefault();document.getElementById("orderItemsInput").value=cart.map(item=>item.name).join(", ");const data=new FormData(form);await fetch(form.action,{method:form.method,body:data,headers:{'Accept':'application/json'}});document.getElementById("overlay").style.display="none";document.getElementById("checkoutForm").style.display="none";document.getElementById("cartPanel").classList.remove("open");cart=[];renderCart();alert("Thank you for choosing us! Your order will be delivered under 20 to 30 days.");});
-    document.addEventListener("DOMContentLoaded",function(){
-      new Choices("#citySelect",{searchEnabled:true,itemSelectText:"",shouldSort:false});
-      new Choices("#stateSelect",{searchEnabled:true,itemSelectText:"",shouldSort:false});
-      const slider=document.getElementById("lipstickSlider");
-      const slides=slider.querySelectorAll(".slide");
-      const dots=document.getElementById("lipstickDots").querySelectorAll(".dot");
-      let current=0;
-      function showSlide(index){if(index<0)index=slides.length-1;if(index>=slides.length)index=0;slides.forEach(s=>s.classList.remove("active"));dots.forEach(d=>d.classList.remove("active"));slides[index].classList.add("active");dots[index].classList.add("active");current=index;}
-      document.getElementById("prevBtn").addEventListener("click",e=>{e.stopPropagation();showSlide(current-1);});
-      document.getElementById("nextBtn").addEventListener("click",e=>{e.stopPropagation();showSlide(current+1);});
-      dots.forEach(d=>d.addEventListener("click",function(){showSlide(parseInt(this.dataset.index,10));}));
-      window.getCurrentSlideSrc=()=>slider.querySelector(".slide.active img")?.src||"";
-      showSlide(0);
-    });
-    if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js");
-}
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAEpjbx1EY14IRe9CJlM3wqerJEFmPu6Q",
+      authDomain: "the-bae-beauty.firebaseapp.com",
+      projectId: "the-bae-beauty",
+      storageBucket: "the-bae-beauty.firebasestorage.app",
+      messagingSenderId: "989629586947",
+      appId: "1:989629586947:web:e333a2f2d68a54ffd57836",
+      measurementId: "G-N2PG8QGDE2"
+    };
 
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("mainSite").style.display = "block";
+        document.getElementById("welcomeText").style.display = "inline";
+        document.getElementById("welcomeText").innerText =
+          "Welcome " + (user.displayName || user.email);
+        document.getElementById("logoutBtn").style.display = "inline";
+      } else {
+        document.getElementById("loginScreen").style.display = "flex";
+        document.getElementById("mainSite").style.display = "none";
+      }
+    });
+
+    function googleLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).catch(err => {
+        alert("Login failed: " + err.message);
+      });
+    }
+
+    function logout() {
+      auth.signOut();
+    }
+  </script>
+
+  <!-- Cart + Shop Functions -->
+  <script>
+    let cart=JSON.parse(localStorage.getItem("cart_v1"))||[];const DELIVERY=50;
+    function saveCart(){localStorage.setItem("cart_v1",JSON.stringify(cart));updateCartCount();}
+    function updateCartCount(){document.getElementById("cartCount").innerText=cart.reduce((s,i)=>s+i.qty,0);}
+    function openCart(){document.getElementById("cartPanel").classList.add("open");renderCart();}
+    function closeCart(){document.getElementById("cartPanel").classList.remove("open");}
+    function renderCart(){const el=document.getElementById("cartItems");el.innerHTML="";if(cart.length===0){el.innerHTML="<p>No items yet.</p>";document.getElementById("cartTotal").innerText="Total: ₹0";updateCartCount();return;}let total=DELIVERY;cart.forEach((it,i)=>{total+=it.price*it.qty;el.innerHTML+=`<div class="cart-item"><div style="display:flex;align-items:center;gap:8px"><img src="${it.img}"/><div>${it.name}</div></div><div><button onclick="changeQty(${i},-1)">-</button>${it.qty}<button onclick="changeQty(${i},1)">+</button></div><div>₹${it.price*it.qty}</div></div>`});document.getElementById("cartTotal").innerText="Total: ₹"+total;updateCartCount();}
+    function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);if(cart[i]?.qty>3)cart[i].qty=3;saveCart();renderCart();}
+    function searchProducts(){const q=document.getElementById("searchInput").value.toLowerCase();document.querySelectorAll(".product-card").forEach(c=>{const name=c.getAttribute("data-name").toLowerCase();const desc=(c.querySelector(".desc")?.innerText||"").toLowerCase();c.style.display=(name.includes(q)||desc.includes(q))?"block":"none";});}
+    let modal={name:"",price:0,img:"",desc:"",qty:1};
+    function openProductModalFromCard(el){modal.name=el.dataset.name;modal.price=+el.dataset.price;modal.img=el.querySelector("img").src;modal.desc=el.querySelector(".desc")?.innerText||"";modal.qty=1;document.getElementById("modalTitle").innerText=modal.name;document.getElementById("modalPrice").innerText="₹"+modal.price;document.getElementById("modalImg").src=modal.img;document.getElementById("modalDesc").innerText=modal.desc;document.getElementById("modalQty").innerText=1;document.getElementById("overlay").style.display="block";document.getElementById("productModal").classList.add("open");}
+    function closeProductModal(){document.getElementById("overlay").style.display="none";document.getElementById("productModal").classList.remove("open");}
+    function modalChangeQty(d){modal.qty+=d;if(modal.qty<1)modal.qty=1;if(modal.qty>3)modal.qty=3;document.getElementById("modalQty").innerText=modal.qty;}
+    function modalAddToCart(){const ex=cart.find(i=>i.name===modal.name);if(ex){ex.qty=Math.min(3,ex.qty+modal.qty);}else{cart.push({name:modal.name,img:modal.img,qty:modal.qty,price:modal.price});}saveCart();renderCart();closeProductModal();alert(modal.name+" added to cart");}
+    function openCheckout(){if(cart.length===0){alert("Cart empty");return;}document.getElementById("orderItemsInput").value=cart.map(i=>`${i.name} x${i.qty}`).join(", ");document.getElementById("overlay").style.display="block";document.getElementById("checkoutModal").classList.add("open");}
+    function closeCheckout(){document.getElementById("overlay").style.display="none";document.getElementById("checkoutModal").classList.remove("open");}
+    document.getElementById("checkoutForm").addEventListener("submit",function(e){e.preventDefault();alert("Order placed!");cart=[];saveCart();renderCart();closeCheckout();closeCart();});
+    renderCart();
   </script>
 </body>
 </html>
-
-
